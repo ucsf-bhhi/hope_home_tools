@@ -188,7 +188,8 @@ if(!missing(codebook_2)){
            cohort,
            base_fu,
            survey,
-           file_name)
+           file_name,
+           branching_logic)
 
   dropped <- redcap_book |>
     dplyr::filter(question == "") |>
