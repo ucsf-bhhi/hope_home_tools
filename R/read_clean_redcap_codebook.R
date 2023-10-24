@@ -109,15 +109,19 @@ clean_codebook <- function(dirty_codebook) {
 #' @examples
 #'
 #'
-compiled_redcap_hopehome_codebook <- function(codebook_1 = "data_dictionaries/HopeHome3_DataDictionary_2023-06-29.csv",
-                                              codebook_2 = "data_dictionaries/HH3LegacyBaselineSurvey_DataDictionary_2023-06-29.csv"){
+compiled_redcap_hopehome_codebook <- function(codebook_1,
+                                              codebook_2 = NULL){
+
+if(missing(codebook_1)){
+  stop("There is no REDCap codebook provided.")
+}
 
   hh3_dict <- read.csv(codebook_1) |>
     dplyr::mutate(cohort = "hope_home_3",
            base_fu = "baseline") |>
     clean_codebook()
 
-
+if(!missing(codebook_2)){
   hhl_dict <- read.csv(codebook_2) |>
     dplyr::mutate(cohort = "hope_home_legacy",
            base_fu = "fu") |>
@@ -125,6 +129,9 @@ compiled_redcap_hopehome_codebook <- function(codebook_1 = "data_dictionaries/Ho
 
   full_dict <- hh3_dict |>
     dplyr::bind_rows(hhl_dict)
+} else{
+    full_dict <- hh3_dict
+  }
 
   ### Clean question text to standardize the format
 
@@ -191,6 +198,8 @@ compiled_redcap_hopehome_codebook <- function(codebook_1 = "data_dictionaries/Ho
     dplyr::filter(question != "")
 
   print(dropped)
+
+  return(redcap_book)
 
 
 }
