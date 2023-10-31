@@ -82,6 +82,29 @@ clean_codebook <- function(dirty_codebook) {
       )
     )
 
+  clean_codebook <- clean_codebook |>
+    mutate(choices_calculations_or_slider_labels = str_to_lower(choices_calculations_or_slider_labels),
+           choices_calculations_or_slider_labels = str_replace_all(choices_calculations_or_slider_labels, "'", ""))
+
+  # Create yesno variable more broadly if the question has Yes No in combination with Don't know and refused
+
+yesno_values <-   c("1, yes | 2, no",
+     "1, yes | 2, no | 3, i dont know",
+     "1, yes | 2, no | -1, dont know/refused",
+     "1, yes | 2, no | -98, dont know/refused",
+     "1, yes | 2, no | -98, dont know/refused",
+     "1, yes | 2, no | -98, dont know",
+     "1, yes | 2, no | -98, dont know | -99, refused",
+     "1, yes | 2, no | 3, dont know",
+     "1, yes | 0, no | -98, i dont know",
+     "1, yes | 2, no | -98, i dont know" ,
+     "1, yes | 2, no | -98, dont know/ refused",
+     "1, yes | 0, no",
+     "1, yes | 2, no | 3, cant do | 4, dont do" )
+
+clean_codebook <- clean_codebook |>
+  mutate(field_type = case_when(choices_calculations_or_slider_labels %in% yesno_values ~ "yesno",
+                                TRUE ~ field_type))
 
   checkbox_vars_clean <- clean_if_checkbox(clean_codebook)
 
@@ -93,9 +116,6 @@ clean_codebook <- function(dirty_codebook) {
 
   return(clean_codebook)
 }
-
-
-
 
 
 #' Clean and compile redcap hope home codebooks
