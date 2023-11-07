@@ -3,9 +3,9 @@ Type: Package
 Title: Create clean REDCap codebooks.
 Version: 0.1.0
 Author: Sara Colom
-Maintainer: Sara Colom sara.colom@ucsf.edu
+Maintainer: Sara Colom <sara.colom@ucsf.edu>
 Description: This package generates compiled REDCap codebook for Hope Hope 3 and Hope Home Legacy, where the values and variable names match up with those used to create Hope Home I and II codebooks.
-License: What license is it under?
+License: 
 Encoding: UTF-8
 LazyData: true
 Imports: 
