@@ -123,7 +123,7 @@ clean_codebook <- clean_codebook |>
 #' @param codebook_1
 #' @param codebook_2
 #'
-#' @return
+#' @return This function returns compiled codebooks from REDCap Hope Home 3 and Hope Home Legacy, that match up with the Hope Home I and II codebooks.
 #' @export
 #'
 #' @examples
@@ -197,8 +197,16 @@ if(!missing(codebook_2)){
     dplyr::mutate(survey = dplyr::case_when(
       form_name == "adl" ~ "adls",
       form_name == "mental_health_hh2bl_mentalhealth_133139_matrix_que" ~ "mental",
-      form_name == "alcohol_hh2bl_alcohol_110114" ~ "alcohol"
-    ))
+      form_name == "alcohol_hh2bl_alcohol_110114" ~ "alcohol",
+      str_detect(file_name, "ADL|Mobility") ~ "adls",
+                         str_detect(form_name, "ces") ~ "CESD",
+                         str_detect(form_name, "health care|healthcare|healthcare") & str_detect(file_name, "Utilization|utilization") ~ "Healthcare utilization",
+                         str_detect(form_name, "Health Care|Healthcare") ~ "Healthcare",
+                         str_detect(form_name, "Drugs|drugs") ~ "Drugs",
+                         str_detect(form_name, "BIF") ~ "BIF",
+                         str_detect(form_name, "Incarceration") ~ "Incarceration",
+                         str_detect(form_name, "Health History|HealthHistory|Healthhistory") ~ "Health history")
+      )
 
   redcap_book <- full_dict |>
     dplyr::filter(!is.na(survey)) |>
@@ -209,7 +217,8 @@ if(!missing(codebook_2)){
            base_fu,
            survey,
            file_name,
-           branching_logic)
+           branching_logic,
+           choices_calculations_labels_raw = choices_calculations_or_slider_labels)
 
   dropped <- redcap_book |>
     dplyr::filter(question == "") |>
