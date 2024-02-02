@@ -36,7 +36,26 @@ clean_if_checkbox <- function(df){
 
 }
 
+# Clean checkbox choices
 
+clean_if_checkbox_choice <- function(df){
+
+checkbox_choices <- df |>
+    dplyr::filter(field_type == "checkbox") |>
+    dplyr::select(variable, choices_calculations_or_slider_labels) |>
+    tidyr::separate(col = choices_calculations_or_slider_labels, into = letters, sep = "\\|") |>
+    tidyr::pivot_longer(a:z) |>
+    dplyr::filter(!is.na(value)) |>
+    dplyr::mutate(value = stringr::str_replace(value, "-", "")) |>
+    tidyr::separate(value, c("var", "choice"), sep = ",") |>
+    mutate(var = str_trim(var),
+           choice = str_trim(choice)) |>
+    dplyr::mutate(new_var = paste(variable, var, sep = "_")) |>
+    dplyr::select(variable, new_var, choice)
+
+  return(checkbox_choices)
+
+}
 
 
 
@@ -106,13 +125,15 @@ clean_codebook <- clean_codebook |>
   mutate(field_type = case_when(choices_calculations_or_slider_labels %in% yesno_values ~ "yesno",
                                 TRUE ~ field_type))
 
-  checkbox_vars_clean <- clean_if_checkbox(clean_codebook)
+  checkbox_vars_clean <- clean_if_checkbox_choice(clean_codebook)
 
   clean_codebook <- clean_codebook |>
     dplyr::left_join(checkbox_vars_clean, by = "variable") |>
     dplyr::mutate(variable = dplyr::case_when(is.na(new_var) ~ variable,
-                                TRUE ~ new_var)) |>
-    dplyr::select(-new_var)
+                                TRUE ~ new_var),
+                  choices_calculations_or_slider_labels = dplyr::case_when(is.na(choice) ~ choices_calculations_or_slider_labels,
+                                                                           TRUE ~ choice)) |>
+    dplyr::select(-new_var, - choice)
 
   return(clean_codebook)
 }
