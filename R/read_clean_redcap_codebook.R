@@ -51,7 +51,8 @@ checkbox_choices <- df |>
     mutate(var = str_trim(var),
            choice = str_trim(choice)) |>
     dplyr::mutate(new_var = paste(variable, var, sep = "_")) |>
-    dplyr::select(variable, new_var, choice)
+    dplyr::select(variable, new_var, choice) |>
+    dplyr::mutate(variable = stringr::str_replace(variable, "__", ""))
 
   return(checkbox_choices)
 
