@@ -51,8 +51,7 @@ checkbox_choices <- df |>
     mutate(var = str_trim(var),
            choice = str_trim(choice)) |>
     dplyr::mutate(new_var = paste(variable, var, sep = "_")) |>
-    dplyr::select(variable, new_var, choice) |>
-    dplyr::mutate(variable = stringr::str_replace(variable, "__", ""))
+    dplyr::select(variable, new_var, choice)
 
   return(checkbox_choices)
 
@@ -225,8 +224,8 @@ if(!missing(codebook_2)){
                          str_detect(form_name, "health care|healthcare|healthcare") & str_detect(file_name, "Utilization|utilization") ~ "Healthcare utilization",
                          str_detect(form_name, "Health Care|Healthcare") ~ "Healthcare",
                          str_detect(form_name, "Drugs|drugs") ~ "Drugs",
-                         str_detect(form_name, "BIF") ~ "BIF",
-                         str_detect(form_name, "Incarceration") ~ "Incarceration",
+                         str_detect(form_name, "bifs") ~ "BIF",
+                         str_detect(form_name, "incarceration") ~ "Incarceration",
                          str_detect(form_name, "Health History|HealthHistory|Healthhistory") ~ "Health history")
       )
 
