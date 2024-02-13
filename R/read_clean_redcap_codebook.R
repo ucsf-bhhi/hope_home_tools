@@ -226,7 +226,8 @@ if(!missing(codebook_2)){
                          str_detect(form_name, "Drugs|drugs") ~ "Drugs",
                          str_detect(form_name, "bifs") ~ "BIF",
                          str_detect(form_name, "incarceration") ~ "Incarceration",
-                         str_detect(form_name, "Health History|HealthHistory|Healthhistory") ~ "Health history")
+                         str_detect(form_name, "health_hx") ~ "Health history",
+      str_detect())
       )
 
   redcap_book <- full_dict |>
