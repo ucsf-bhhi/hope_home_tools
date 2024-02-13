@@ -48,8 +48,8 @@ checkbox_choices <- df |>
     dplyr::filter(!is.na(value)) |>
     dplyr::mutate(value = stringr::str_replace(value, "-", "")) |>
     tidyr::separate(value, c("var", "choice"), sep = ",") |>
-    mutate(var = str_trim(var),
-           choice = str_trim(choice)) |>
+    mutate(var = stringr::str_trim(var),
+           choice = stringr::str_trim(choice)) |>
     dplyr::mutate(new_var = paste(variable, var, sep = "_")) |>
     dplyr::select(variable, new_var, choice)
 
@@ -102,8 +102,8 @@ clean_codebook <- function(dirty_codebook) {
     )
 
   clean_codebook <- clean_codebook |>
-    mutate(choices_calculations_or_slider_labels = str_to_lower(choices_calculations_or_slider_labels),
-           choices_calculations_or_slider_labels = str_replace_all(choices_calculations_or_slider_labels, "'", ""))
+    mutate(choices_calculations_or_slider_labels = stringr::str_to_lower(choices_calculations_or_slider_labels),
+           choices_calculations_or_slider_labels = stringr::str_replace_all(choices_calculations_or_slider_labels, "'", ""))
 
   # Create yesno variable more broadly if the question has Yes No in combination with Don't know and refused
 
@@ -219,15 +219,14 @@ if(!missing(codebook_2)){
       form_name == "adl" ~ "adls",
       form_name == "mental_health_hh2bl_mentalhealth_133139_matrix_que" ~ "mental",
       form_name == "alcohol_hh2bl_alcohol_110114" ~ "alcohol",
-      str_detect(form_name, "ADL|Mobility") ~ "adls",
-                         str_detect(form_name, "ces") ~ "CESD",
-                         str_detect(form_name, "health care|healthcare|healthcare") & str_detect(form_name, "Utilization|utilization") ~ "Healthcare utilization",
-                         str_detect(form_name, "Health Care|Healthcare") ~ "Healthcare",
-                         str_detect(form_name, "Drugs|drugs") ~ "Drugs",
-                         str_detect(form_name, "bifs") ~ "BIF",
-                         str_detect(form_name, "incarceration") ~ "Incarceration",
-                         str_detect(form_name, "health_hx") ~ "Health history",
-      str_detect())
+      stringr::str_detect(form_name, "ADL|Mobility") ~ "adls",
+                         stringr::str_detect(form_name, "ces") ~ "CESD",
+                         stringr::str_detect(form_name, "health care|healthcare|healthcare") & stringr::str_detect(form_name, "Utilization|utilization") ~ "Healthcare utilization",
+                         stringr::str_detect(form_name, "Health Care|Healthcare") ~ "Healthcare",
+                         stringr::str_detect(form_name, "Drugs|drugs") ~ "Drugs",
+                         stringr::str_detect(form_name, "bifs") ~ "BIF",
+                         stringr::str_detect(form_name, "incarceration") ~ "Incarceration",
+                         stringr::str_detect(form_name, "health_hx") ~ "Health history")
       )
 
   redcap_book <- full_dict |>
