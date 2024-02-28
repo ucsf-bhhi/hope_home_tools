@@ -48,7 +48,7 @@ checkbox_choices <- df |>
     dplyr::filter(!is.na(value)) |>
     dplyr::mutate(value = stringr::str_replace(value, "-", "")) |>
     tidyr::separate(value, c("var", "choice"), sep = ",") |>
-    mutate(var = stringr::str_trim(var),
+    dplyr::mutate(var = stringr::str_trim(var),
            choice = stringr::str_trim(choice)) |>
     dplyr::mutate(new_var = paste(variable, var, sep = "_")) |>
     dplyr::select(variable, new_var, choice)
