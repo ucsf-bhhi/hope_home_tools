@@ -122,7 +122,7 @@ yesno_values <-   c("1, yes | 2, no",
      "1, yes | 2, no | 3, cant do | 4, dont do" )
 
 clean_codebook <- clean_codebook |>
-  mutate(field_type = case_when(choices_calculations_or_slider_labels %in% yesno_values ~ "yesno",
+  dplyr::mutate(field_type = case_when(choices_calculations_or_slider_labels %in% yesno_values ~ "yesno",
                                 TRUE ~ field_type))
 
   checkbox_vars_clean <- clean_if_checkbox_choice(clean_codebook)
