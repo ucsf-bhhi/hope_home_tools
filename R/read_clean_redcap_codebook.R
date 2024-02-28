@@ -226,8 +226,11 @@ if(!missing(codebook_2)){
                          stringr::str_detect(form_name, "Drugs|drugs") ~ "Drugs",
                          stringr::str_detect(form_name, "bifs") ~ "BIF",
                          stringr::str_detect(form_name, "incarceration") ~ "Incarceration",
-                         stringr::str_detect(form_name, "health_hx") ~ "Health history")
-      )
+                         stringr::str_detect(form_name, "health_hx") ~ "Health history",
+      stringr::str_detect(form_name, "social") ~ "Social support",
+      stringr::str_detect(form_name, "income") ~ "Income",
+      stringr::str_detect(form_name, "lone") ~ "Loneliness"
+      ))
 
   redcap_book <- full_dict |>
     dplyr::filter(!is.na(survey)) |>
