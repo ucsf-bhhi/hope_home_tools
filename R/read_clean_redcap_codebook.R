@@ -1,6 +1,4 @@
 
-
-
 # Custom field name clean up function
 
 clean_field_label <- function(df, field_label = field_label) {
