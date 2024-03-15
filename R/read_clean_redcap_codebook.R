@@ -231,7 +231,8 @@ if(!missing(codebook_2)){
       stringr::str_detect(form_name, "lone") & stringr::str_starts(raw_var, "pr") ~ "PROMIS",
       stringr::str_detect(form_name, "sex") ~ "Sexual relationships",
       stringr::str_detect(form_name, "veteran") ~ "Veteran",
-      stringr::str_detect(form_name, "cigarette") ~ "Cigarette smoking"
+      stringr::str_detect(form_name, "cigarette") ~ "Cigarette smoking",
+      stringr::str_detect(form_name, "intro") ~ "Intro"
 
       ))
 
