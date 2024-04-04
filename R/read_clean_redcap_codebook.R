@@ -232,8 +232,10 @@ if(!missing(codebook_2)){
       stringr::str_detect(form_name, "sex") ~ "Sexual relationships",
       stringr::str_detect(form_name, "veteran") ~ "Veteran",
       stringr::str_detect(form_name, "cigarette") ~ "Cigarette smoking",
-      stringr::str_detect(form_name, "intro") ~ "Intro"
-
+      stringr::str_detect(form_name, "intro") ~ "Intro",
+      stringr::str_detect(form_name, "employ") ~ "Employment",
+      stringr::str_detect(form_name, "educ") ~ "Education",
+      stringr::str_detect(form_name, "abuse") ~ "neglect_abuse"
       ))
 
   redcap_book <- full_dict |>
