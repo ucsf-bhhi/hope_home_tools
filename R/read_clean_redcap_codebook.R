@@ -235,7 +235,13 @@ if(!missing(codebook_2)){
       stringr::str_detect(form_name, "intro") ~ "Intro",
       stringr::str_detect(form_name, "employ") ~ "Employment",
       stringr::str_detect(form_name, "educ") ~ "Education",
-      stringr::str_detect(form_name, "abuse") ~ "neglect_abuse"
+      stringr::str_detect(form_name, "abuse") ~ "neglect_abuse",
+      stringr::str_detect(form_name, "family") ~ "family",
+      stringr::str_detect(form_name, "insurance") ~ "health_insurance",
+      stringr::str_detect(form_name, "trajectory") ~ "housing_trajectory",
+      stringr::str_detect(form_name, "housing") ~ "housing"
+
+
       ))
 
   redcap_book <- full_dict |>
