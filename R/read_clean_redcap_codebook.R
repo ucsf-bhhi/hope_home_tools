@@ -239,7 +239,8 @@ if(!missing(codebook_2)){
       stringr::str_detect(form_name, "family") ~ "family",
       stringr::str_detect(form_name, "insurance") ~ "health_insurance",
       stringr::str_detect(form_name, "trajectory") ~ "housing_trajectory",
-      stringr::str_detect(form_name, "housing") ~ "housing"
+      stringr::str_detect(form_name, "housing") ~ "housing",
+      stringr::str_detect(form_name, "medication") ~ "medication"
 
 
       ))
