@@ -242,7 +242,8 @@ if(!missing(codebook_2)){
       stringr::str_detect(form_name, "housing") ~ "housing",
       stringr::str_detect(form_name, "medication") ~ "medication",
       stringr::str_detect(form_name, "weight") ~ "heightweightvision",
-      stringr::str_detect(form_name, "child") ~ "children"
+      stringr::str_detect(form_name, "child") ~ "children",
+      stringr::str_detect(form_name, "data_preload") ~ "demographics"
 
       ))
 
