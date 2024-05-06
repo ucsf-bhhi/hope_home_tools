@@ -243,8 +243,10 @@ if(!missing(codebook_2)){
       stringr::str_detect(form_name, "medication") ~ "medication",
       stringr::str_detect(form_name, "weight") ~ "heightweightvision",
       stringr::str_detect(form_name, "child") ~ "children",
-      stringr::str_detect(form_name, "data_preload|screener_info") ~ "demographics"
-
+      stringr::str_detect(form_name, "data_preload|screener_info") ~ "demographics",
+      stringr::str_detect(form_name, "trails_scor") ~ "trails",
+      stringr::str_detect(form_name, "ms_scor") ~ "ms_scoring",
+      stringr::str_detect(form_name, "sppb") ~ "sppb"
       ))
 
   redcap_book <- full_dict |>
