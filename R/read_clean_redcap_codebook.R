@@ -261,14 +261,14 @@ if(!missing(codebook_2)){
            branching_logic,
            choices_calculations_labels_raw = choices_calculations_or_slider_labels)
 
-  dropped <- redcap_book |>
-    dplyr::filter(question == "") |>
-    dplyr::select(dropped_from_redcap = raw_var)
-
-  redcap_book <- redcap_book |>
-    dplyr::filter(question != "")
-
-  print(dropped)
+  # dropped <- redcap_book |>
+  #   dplyr::filter(question == "") |>
+  #   dplyr::select(dropped_from_redcap = raw_var)
+  #
+  # redcap_book <- redcap_book |>
+  #   dplyr::filter(question != "")
+  #
+  # print(dropped)
 
   return(redcap_book)
 
