@@ -85,15 +85,7 @@ clean_codebook <- function(dirty_codebook) {
       branching_logic = stringr::str_replace_all(branching_logic, "and", "&"),
       branching_logic = stringr::str_replace_all(branching_logic, "<>", " != "),
       branching_logic = stringr::str_replace_all(branching_logic, "\\(", "___"),
-      branching_logic = stringr::str_replace_all(branching_logic, "\\)", ""),
-      branching_logic = stringr::str_replace(branching_logic, " =", "=="),
-      branching_logic = stringr::str_replace(branching_logic, " ='", "=="),
-      branching_logic = stringr::str_replace(branching_logic, "1= |1='", "1=="),
-      branching_logic = stringr::str_replace(branching_logic, "d= |d='", "d=="),
-      branching_logic = stringr::str_replace(branching_logic, "4= |4='", "4=="),
-      branching_logic = stringr::str_replace(branching_logic, "7= |7='", "7=="),
-      branching_logic = stringr::str_replace(branching_logic, "b= |b='", "b=="),
-      branching_logic = stringr::str_replace(branching_logic, "8= |8='", "8=="),
+      branching_logic = stringr::str_replace_all(branching_logic, "\\)", "")
 
     ) |>
     clean_field_label() |>
@@ -272,14 +264,13 @@ if(!missing(codebook_2)){
 
   redcap_book <- redcap_book |>
     mutate(
-      branching_logic = stringr::str_replace(branching_logic, " =", "=="),
-      branching_logic = stringr::str_replace(branching_logic, " ='", "=="),
-      branching_logic = stringr::str_replace(branching_logic, "1= |1='", "1=="),
-      branching_logic = stringr::str_replace(branching_logic, "d= |d='", "d=="),
-      branching_logic = stringr::str_replace(branching_logic, "4= |4='", "4=="),
-      branching_logic = stringr::str_replace(branching_logic, "7= |7='", "7=="),
-      branching_logic = stringr::str_replace(branching_logic, "b= |b='", "b=="),
-      branching_logic = stringr::str_replace(branching_logic, "8= |8='", "8==")
+      branching_logic = stringr::str_replace(branching_logic, " ='", "=='"),
+      branching_logic = stringr::str_replace(branching_logic, "1= '|1='", "1=='"),
+      branching_logic = stringr::str_replace(branching_logic, "d= '|d='", "d=='"),
+      branching_logic = stringr::str_replace(branching_logic, "4= '|4='", "4=='"),
+      branching_logic = stringr::str_replace(branching_logic, "7= '|7='", "7=='"),
+      branching_logic = stringr::str_replace(branching_logic, "b= '|b='", "b=='"),
+      branching_logic = stringr::str_replace(branching_logic, "8= '|8='", "8=='")
 
     )
 
