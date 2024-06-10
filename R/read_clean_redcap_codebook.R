@@ -87,7 +87,8 @@ clean_codebook <- function(dirty_codebook) {
       branching_logic = stringr::str_replace_all(branching_logic, "\\(", "___"),
       branching_logic = stringr::str_replace_all(branching_logic, "\\)", ""),
       branching_logic = stringr::str_replace(branching_logic, " =", "=="),
-      branching_logic = stringr::str_replace(branching_logic, " ='", "==")
+      branching_logic = stringr::str_replace(branching_logic, " ='", "=="),
+      branching_logic = stringr::str_replace(branching_logic, "h7b1='1'", "h7b1=='1'")
     ) |>
     clean_field_label() |>
     dplyr::rename(variable = 1)
