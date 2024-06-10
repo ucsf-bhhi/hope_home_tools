@@ -28,5 +28,5 @@ Steps are commented out below beneath its description.
 # credentials::set_github_pat()
 
 #now remotes::install_github() will work
-# remotes::install_github("ucsf-bhhi/hope_home_tools")
+# remotes::install_github("Benioff-Homelessness-Housing-Initiative/hope_home_tools")
 ```
