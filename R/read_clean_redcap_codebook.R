@@ -270,6 +270,20 @@ if(!missing(codebook_2)){
            branching_logic,
            choices_calculations_labels_raw = choices_calculations_or_slider_labels)
 
+  redcap_book <- redcap_book |>
+    mutate(
+      branching_logic = stringr::str_replace(branching_logic, " =", "=="),
+      branching_logic = stringr::str_replace(branching_logic, " ='", "=="),
+      branching_logic = stringr::str_replace(branching_logic, "1= |1='", "1=="),
+      branching_logic = stringr::str_replace(branching_logic, "d= |d='", "d=="),
+      branching_logic = stringr::str_replace(branching_logic, "4= |4='", "4=="),
+      branching_logic = stringr::str_replace(branching_logic, "7= |7='", "7=="),
+      branching_logic = stringr::str_replace(branching_logic, "b= |b='", "b=="),
+      branching_logic = stringr::str_replace(branching_logic, "8= |8='", "8==")
+
+    )
+
+
   # dropped <- redcap_book |>
   #   dplyr::filter(question == "") |>
   #   dplyr::select(dropped_from_redcap = raw_var)
