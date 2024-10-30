@@ -260,7 +260,8 @@ if(!missing(codebook_2)){
            survey,
            file_name,
            branching_logic,
-           choices_calculations_labels_raw = choices_calculations_or_slider_labels)
+           choices_calculations_labels_raw = choices_calculations_or_slider_labels,
+           text_type = text_validation_type_or_show_slider_number)
 
   redcap_book <- redcap_book |>
     mutate(
