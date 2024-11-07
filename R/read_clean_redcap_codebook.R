@@ -150,7 +150,8 @@ clean_codebook <- clean_codebook |>
 #'
 #'
 compiled_redcap_hopehome_codebook <- function(codebook_1,
-                                              codebook_2 = NULL){
+                                              codebook_2 = NULL,
+                                              codebook_3 = NULL){
 
 if(missing(codebook_1)){
   stop("There is no REDCap codebook provided.")
@@ -166,12 +167,30 @@ if(!missing(codebook_2)){
     dplyr::mutate(cohort = "hope_home_legacy",
            base_fu = "fu") |>
     clean_codebook()
+}
 
-  full_dict <- hh3_dict |>
-    dplyr::bind_rows(hhl_dict)
-} else{
-    full_dict <- hh3_dict
+
+if(!missing(codebook_3) & !missing(codebook_2)){
+  hh_fu <- read.csv(codebook_3) |>
+    dplyr::mutate(cohort = "hh3_follow_up",
+           base_fu = "fu") |>
+    clean_codebook()
+
+}
+
+if(missing(codebook_2) & missing(codebook_3)){
+  full_dict <- hh3_dict
+}
+
+if(missing(codebook_3)){
+    full_dict <- hh3_dict |>
+      bind_rows(hhl_dict)
+}else{
+    full_dict <- hh3_dict |>
+      bind_rows(hhl_dict) |>
+      bind_rows(hh_fu)
   }
+
 
   ### Clean question text to standardize the format
 
