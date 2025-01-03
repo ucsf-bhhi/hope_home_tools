@@ -266,7 +266,8 @@ if(missing(codebook_3)){
       stringr::str_detect(form_name, "data_preload|screener_info") ~ "demographics",
       stringr::str_detect(form_name, "trails_scor") ~ "trails",
       stringr::str_detect(form_name, "ms_scor") ~ "ms_scoring",
-      stringr::str_detect(form_name, "sppb") ~ "sppb"
+      stringr::str_detect(form_name, "sppb") ~ "sppb",
+      stringr::str_detect(form_name, "hearth") ~ "hearth"
       ))
 
   redcap_book <- full_dict |>
@@ -290,7 +291,9 @@ if(missing(codebook_3)){
       branching_logic = stringr::str_replace(branching_logic, "4= '|4='", "4=='"),
       branching_logic = stringr::str_replace(branching_logic, "7= '|7='", "7=='"),
       branching_logic = stringr::str_replace(branching_logic, "b= '|b='", "b=='"),
-      branching_logic = stringr::str_replace(branching_logic, "8= '|8='", "8=='")
+      branching_logic = stringr::str_replace(branching_logic, "8= '|8='", "8=='"),
+      branching_logic = stringr::str_replace(branching_logic, "fourteendays='2'", "fourteendays=='2'"),
+      branching_logic = stringr::str_replace(branching_logic, "fourteendays_hospital= '1'", "fourteendays_hospital== '1'")
 
     )
 
