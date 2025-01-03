@@ -294,7 +294,7 @@ if(missing(codebook_3)){
       branching_logic = stringr::str_replace(branching_logic, "8= '|8='", "8=='"),
       branching_logic = stringr::str_replace(branching_logic, "fourteendays='2'", "fourteendays=='2'"),
       branching_logic = stringr::str_replace(branching_logic, "fourteendays_hospital= '1'", "fourteendays_hospital== '1'"),
-      branching_logic = stringr::str_replace(branching_logic, "h14day_2='5'", "h14day_2=='5'")
+      branching_logic = str_replace_all(branching_logic, "(?<=^|[^!><=])=(?=[^=])", "=="),
 
     )
 
