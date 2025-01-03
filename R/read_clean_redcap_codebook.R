@@ -77,7 +77,7 @@ clean_codebook <- function(dirty_codebook) {
     dplyr::mutate(
       branching_logic = stringr::str_replace_all(branching_logic_show_field_only_if, stringr::fixed("\\"), "backslash"),
       branching_logic = stringr::str_replace_all(branching_logic, "\\[|\\]", ""),
-      branching_logic = stringr::str_replace_all(branching_logic, " or ", "|"),
+      branching_logic = stringr:: str_replace_all(branching_logic, "(?<!s)or(?!e)", "|"),
       branching_logic = stringr::str_replace_all(branching_logic, " = ", "=="),
       branching_logic = stringr::str_replace_all(branching_logic, ">==", ">="),
       branching_logic = stringr::str_replace_all(branching_logic, "<==", "<="),
